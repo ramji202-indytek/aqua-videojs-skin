@@ -48,6 +48,7 @@ import '@videojs/html/ui/status-announcer';
 
 import './slate.css';
 import './loader.css';
+import './playlist.js';
 import './loader.js';
 import './meter.css';
 import './meter.js';
