@@ -1,0 +1,37 @@
+/* Clock boxes for SLATE and SLATE TV (AQUA's tank lives in aqua.css). */
+.slate-clock-btn[aria-pressed='true'] { background: var(--slate-ink); color: var(--slate-paper); box-shadow: 3px 3px 0 var(--slate-accent); }
+@container slate (max-width: 639px) { .slate-clock-btn { display: none; } }
+
+/* SLATE: a paper chip with a ruler along its foot; an orange tick marks the seconds. */
+.slate-clock {
+  position: absolute; z-index: 14; top: clamp(8px, 2cqw, 16px); right: clamp(8px, 2cqw, 16px);
+  display: flex; align-items: center; gap: 8px; pointer-events: none;
+  padding: clamp(6px, 1cqw, 9px) clamp(10px, 1.6cqw, 14px) clamp(14px, 2cqw, 18px);
+  background: var(--slate-paper); color: var(--slate-ink);
+  border: 3px solid var(--slate-ink); box-shadow: 5px 5px 0 var(--slate-ink);
+  font: 700 clamp(15px, 2.4cqw, 24px)/1 var(--slate-mono); font-variant-numeric: tabular-nums; letter-spacing: 0.02em;
+  --sec: 0;
+  opacity: 0; translate: 0 -6px; transition: opacity 0.2s, translate 0.2s;
+}
+.slate-clock[data-on='true'] { opacity: 1; translate: 0 0; }
+.slate-clock-dot { width: 0.5em; height: 0.5em; background: var(--slate-accent); border: 2px solid var(--slate-ink); flex: none; }
+.slate-clock small { font-size: 0.55em; font-weight: 700; color: rgb(14 14 12 / 0.7); align-self: flex-end; padding-bottom: 0.15em; }
+.slate-clock::before { /* ruler ticks */
+  content: ''; position: absolute; left: 8px; right: 8px; bottom: 4px; height: 8px; pointer-events: none;
+  background:
+    repeating-linear-gradient(90deg, var(--slate-ink) 0 1px, transparent 1px 6px) bottom / 100% 4px no-repeat,
+    repeating-linear-gradient(90deg, var(--slate-ink) 0 2px, transparent 2px 30px) bottom / 100% 8px no-repeat;
+}
+.slate-clock::after { /* seconds marker */
+  content: ''; position: absolute; bottom: 3px; width: 4px; height: 12px; background: var(--slate-accent);
+  border: 1.5px solid var(--slate-ink); left: calc(8px + var(--sec) * (100% - 16px)); translate: -50% 0;
+  transition: left 0.3s linear;
+}
+
+/* SLATE TV: the existing broadcast chip, now switchable. */
+.tv-clock { transition: opacity 0.2s, translate 0.2s; }
+.tv-clock[data-on='false'] { opacity: 0; translate: 0 -6px; visibility: hidden; }
+
+@media (prefers-reduced-motion: reduce) {
+  .slate-clock, .slate-clock::after, .tv-clock { transition: none; }
+}

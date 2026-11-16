@@ -1,0 +1,522 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AQUA — an aquarium skin for Video.js v10</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <meta name="description" content="AQUA is an aquarium skin for the Video.js v10 player: fish swim while the video plays and freeze in place when you pause." />
+  <meta name="theme-color" content="#052f45" />
+  <script>if (/[?&]embed=1/.test(location.search)) document.documentElement.classList.add("embed");</script>
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="AQUA — an aquarium skin for Video.js v10" />
+  <meta property="og:description" content="Press play and the fish swim. Press pause and everything freezes in place. A frosted-glass control strip for the Video.js v10 player." />
+  <meta property="og:image" content="og.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <script type="module" crossorigin src="./assets/main-_iIWaCrL.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/main-DopLTMhp.css">
+</head>
+<body class="aqua-page">
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="i-stop" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="2" fill="currentColor"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path d="M6 3.5v17L20 12z" fill="currentColor"/></symbol>
+      <symbol id="i-pause" viewBox="0 0 24 24"><path d="M5.5 3.5h4.5v17H5.5zM14 3.5h4.5v17H14z" fill="currentColor"/></symbol>
+      <symbol id="i-replay" viewBox="0 0 24 24"><path d="M4 12a8 8 0 1 0 2.6-5.9M4 3.5V8.5h5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="square"/></symbol>
+      <symbol id="i-vol" viewBox="0 0 24 24"><path d="M3 9h4l5-4v14l-5-4H3z" fill="currentColor"/><path d="M16 8.5a5 5 0 0 1 0 7M18.8 5.5a9 9 0 0 1 0 13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="square"/></symbol>
+      <symbol id="i-mute" viewBox="0 0 24 24"><path d="M3 9h4l5-4v14l-5-4H3z" fill="currentColor"/><path d="M16 9l6 6M22 9l-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="square"/></symbol>
+      <symbol id="i-cc" viewBox="0 0 24 24"><rect x="2.5" y="4.5" width="19" height="15" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M10 10.2a2.4 2.4 0 1 0 0 3.6M17 10.2a2.4 2.4 0 1 0 0 3.6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></symbol>
+      <symbol id="i-gear" viewBox="0 0 24 24"><path d="M4 7h10M18 7h2M4 17h2M10 17h10" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="square"/><rect x="14" y="4.5" width="4" height="5" fill="currentColor"/><rect x="6" y="14.5" width="4" height="5" fill="currentColor"/></symbol>
+      <symbol id="i-pip" viewBox="0 0 24 24"><rect x="2.5" y="4.5" width="19" height="15" fill="none" stroke="currentColor" stroke-width="2.2"/><rect x="12" y="11" width="8" height="6" fill="currentColor"/></symbol>
+      <symbol id="i-fs" viewBox="0 0 24 24"><path d="M3 9V3h6M21 9V3h-6M3 15v6h6M21 15v6h-6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="square"/></symbol>
+      <symbol id="i-fs-exit" viewBox="0 0 24 24"><path d="M9 3v6H3M15 3v6h6M9 21v-6H3M15 21v-6h6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="square"/></symbol>
+      <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M12 6.5V12l4 2.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="square"/></symbol>
+      <symbol id="i-loop" viewBox="0 0 24 24"><path d="M4 11V9a3 3 0 0 1 3-3h12M16 3l3 3-3 3M20 13v2a3 3 0 0 1-3 3H5M8 21l-3-3 3-3" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+      <symbol id="i-logo" viewBox="0 0 24 24"><rect x="2.5" y="6.5" width="19" height="11" rx="3.5" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M6.5 12.5q1.6-2.2 3.2 0t3.2 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M16 11h2.5M16 14h1.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+      <symbol id="i-chev" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="square"/></symbol>
+      <symbol id="i-check" viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="square"/></symbol>
+    </defs>
+  </svg>
+
+  <a class="skip" href="#notes">Skip to design notes</a>
+
+  <nav class="topnav" aria-label="Page sections">
+    <a class="topnav-brand" href="#player">AQUA<span aria-hidden="true">.</span></a>
+    <ul>
+      <li><a href="#player">Player</a></li>
+      <li><a href="#notes">Design</a></li>
+      <li><a href="#controls">Controls</a></li>
+      <li><a href="#a11y">Accessibility</a></li>
+      <li><a href="#install">Use it</a></li>
+    </ul>
+  </nav>
+
+  <main class="page">
+    <header class="page-head">
+      <p class="eyebrow">Video.js v10 · Skins Design Challenge</p>
+      <h1>AQUA<span aria-hidden="true">.</span></h1>
+      <p class="lede">The control strip is the glass of a small aquarium. Press play and the fish swim; press pause and they stop exactly where they are.</p>
+    </header>
+
+    <section id="player" class="preview" aria-label="Player preview">
+      <div class="preview-bar" role="group" aria-label="Preview options">
+        <div class="pv-group" role="group" aria-label="Site background">
+          <span class="pv-label">Site</span>
+          <button type="button" class="slate-btn pv-btn" data-site-set="dark" aria-pressed="true">Dark</button>
+          <button type="button" class="slate-btn pv-btn" data-site-set="light" aria-pressed="false">Light</button>
+        </div>
+        <div class="pv-group pv-device" role="group" aria-label="Device size">
+          <span class="pv-label">Device</span>
+          <button type="button" class="slate-btn pv-btn" data-device-set="desktop" aria-pressed="true">Desktop</button>
+          <button type="button" class="slate-btn pv-btn" data-device-set="tablet" aria-pressed="false">Tablet</button>
+          <button type="button" class="slate-btn pv-btn" data-device-set="phone" aria-pressed="false">Phone</button>
+        </div>
+        <div class="aqua-themes pv-group" role="group" aria-label="Water colour">
+          <span class="aqua-themes-label pv-label">Water</span>
+          <button type="button" class="slate-btn pv-btn" data-theme="reef" aria-pressed="true">Reef</button>
+          <button type="button" class="slate-btn pv-btn" data-theme="lagoon" aria-pressed="false">Lagoon</button>
+          <button type="button" class="slate-btn pv-btn" data-theme="deep" aria-pressed="false">Deep</button>
+        </div>
+      </div>
+      <div class="stage" data-site="dark" data-device="desktop">
+        <div class="stage-bar" aria-hidden="true"><i></i><i></i><i></i><span>yoursite.com/watch</span></div>
+        <div class="stage-page">
+          <div class="sk sk-title" aria-hidden="true"></div>
+          <div class="sk sk-line" aria-hidden="true"></div>
+          <div class="stage-body">
+    <video-player class="slate-player">
+      <media-container class="slate aqua" data-playing="false" data-demo-src="https://stream.mux.com/BMmoKau4mlE5JaulU9mUN01yarUcMJRwIZ5DKP00UUVjs.m3u8" aria-label="AQUA demo video player">
+        <hls-video src="https://stream.mux.com/BMmoKau4mlE5JaulU9mUN01yarUcMJRwIZ5DKP00UUVjs.m3u8" playsinline preload="metadata" crossorigin="anonymous" data-mux-id="BMmoKau4mlE5JaulU9mUN01yarUcMJRwIZ5DKP00UUVjs"></hls-video>
+
+        <div class="aqua-logo" id="aqua-logo" data-logo-box data-on="true">
+          <div class="al-pill">
+            <span class="al-water" aria-hidden="true">
+              <svg class="al-wave w1" viewBox="0 0 120 14" preserveAspectRatio="none"><path d="M0 7 Q15 0 30 7 T60 7 T90 7 T120 7 V14 H0Z"/></svg>
+              <svg class="al-wave w2" viewBox="0 0 120 14" preserveAspectRatio="none"><path d="M0 7 Q15 14 30 7 T60 7 T90 7 T120 7 V14 H0Z"/></svg>
+              <i class="al-b b1"></i><i class="al-b b2"></i><i class="al-b b3"></i><i class="al-b b4"></i><i class="al-b b5"></i>
+            </span>
+            <span class="al-fish" aria-hidden="true">
+              <svg viewBox="0 0 70 30">
+                <g transform="translate(0,3)"><path class="fa-tail" d="M20 12 L2 1 L7 12 L2 23Z" fill="#ff9d7f"/></g>
+                <g transform="translate(17,0)">
+                  <path d="M4 15 C10 2 34 2 46 15 C34 28 10 28 4 15Z" fill="#ff7a59"/>
+                  <path d="M22 5 L28 0 L33 6Z" fill="#ff9d7f"/>
+                  <path d="M21 6 C24 12 24 18 21 24 L25 24.5 C28 18 28 12 25 5.5Z" fill="#fff" fill-opacity=".4"/>
+                  <path class="fa-mouth" d="M46 15 L40 11.6 L40 18.4Z" fill="#052f45"/>
+                  <circle cx="38" cy="12.5" r="2.6" fill="#052f45"/><circle cx="38.8" cy="11.7" r=".8" fill="#fff"/>
+                </g>
+                <circle class="fa-bub bb1" cx="65" cy="15" r="2.2"/><circle class="fa-bub bb2" cx="65" cy="15" r="1.6"/><circle class="fa-bub bb3" cx="65" cy="15" r="1.2"/>
+              </svg>
+            </span>
+            <span class="al-text" data-logo-text>AQUA TV</span>
+          </div>
+        </div>
+        <div class="aqua-clock" id="aqua-clock" data-clock-box data-clock-key="aqua-clock" data-on="false" aria-hidden="true">
+          <div class="aqua-port">
+            <div class="aqua-port-water">
+              <svg class="aqua-port-wave" viewBox="0 0 400 30" preserveAspectRatio="none"><path d="M0 14 q25 -12 50 0 t50 0 t50 0 t50 0 t50 0 t50 0 t50 0 t50 0 L400 30 L0 30Z"/></svg>
+              <div class="port-fish" style="color:#ffd166"><svg viewBox="0 0 60 36"><use href="#aq-fish"/></svg></div>
+              <i class="pb pb1"></i><i class="pb pb2"></i><i class="pb pb3"></i><i class="pb pb4"></i>
+            </div>
+            <div class="aqua-port-time"><span id="aqua-time" data-clock-time>--:--</span><small id="aqua-sec" data-clock-sec>--</small></div>
+          </div>
+        </div>
+        <media-poster class="slate-poster">
+          <img src="https://image.mux.com/BMmoKau4mlE5JaulU9mUN01yarUcMJRwIZ5DKP00UUVjs/thumbnail.jpg?time=2" alt="" decoding="async" onerror="this.onerror=null;this.src='poster.jpg'" />
+        </media-poster>
+
+        <media-buffering-indicator class="slate-spinner" aria-hidden="true">
+          <span class="slate-spinner-block"></span>
+        </media-buffering-indicator>
+
+        <media-error-dialog>
+          <media-dialog-backdrop class="slate-backdrop"></media-dialog-backdrop>
+          <media-dialog-popup class="slate-error">
+            <media-dialog-title class="slate-error-title"></media-dialog-title>
+            <media-dialog-description class="slate-error-text"></media-dialog-description>
+            <media-dialog-close class="slate-btn slate-btn-accent">Dismiss</media-dialog-close>
+          </media-dialog-popup>
+        </media-error-dialog>
+
+        <media-controls class="slate-controls-root">
+          <media-controls-backdrop class="slate-shade"></media-controls-backdrop>
+
+          <media-controls-content class="slate-controls">
+            <!-- Big center play block, only while paused -->
+            <media-controls-group class="slate-center">
+              <media-play-button class="slate-big-play" aria-describedby="slate-hint">
+                <svg class="i i-play" aria-hidden="true"><use href="#i-play"/></svg>
+                <svg class="i i-replay" aria-hidden="true"><use href="#i-replay"/></svg>
+              </media-play-button>
+            </media-controls-group>
+
+            <div class="slate-strip">
+              <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
+            <symbol id="aq-fish2" viewBox="0 0 60 44">
+              <path d="M13 22 L1 8 Q6 22 1 36Z" fill="currentColor" fill-opacity=".8"/>
+              <path d="M22 8 Q30 -2 42 8Z" fill="currentColor" fill-opacity=".85"/>
+              <path d="M22 36 Q30 46 40 36Z" fill="currentColor" fill-opacity=".7"/>
+              <ellipse cx="32" cy="22" rx="21" ry="16" fill="currentColor"/>
+              <path d="M26 7 Q22 22 26 37 M33 6.5 Q29 22 33 37.5" stroke="#fff" stroke-opacity=".38" stroke-width="3" fill="none"/>
+              <circle cx="45" cy="18" r="3.2" fill="#052f45"/><circle cx="46" cy="17" r="1" fill="#fff"/>
+            </symbol>
+            <symbol id="aq-fish" viewBox="0 0 60 36">
+              <path d="M16 18 L2 6 L7 18 L2 30Z" fill="currentColor" fill-opacity=".8"/>
+              <path d="M26 8 L33 0 L40 9Z" fill="currentColor" fill-opacity=".85"/>
+              <path d="M14 18 C20 4 44 4 54 18 C44 32 20 32 14 18Z" fill="currentColor"/>
+              <path d="M28 8.5 C31 15 31 21 28 27.5 L32.5 28 C35.5 21 35.5 15 32.5 8Z" fill="#fff" fill-opacity=".35"/>
+              <circle cx="46" cy="15.5" r="2.8" fill="#052f45"/><circle cx="46.9" cy="14.6" r=".9" fill="#fff"/>
+            </symbol></defs></svg>
+          <div class="aqua-tank" aria-hidden="true">
+          <div class="aqua-light"></div>
+          <div class="aqua-sand"></div>
+          <div class="aqua-reef"><svg class="reef r-branch" viewBox="0 0 60 70" style="left:11%;height:58px" aria-hidden="true"><g fill="none" stroke-linecap="round" stroke-width="6" class="sway"><path d="M30 70 V38" stroke="#ff6f91"/><path d="M30 52 L16 38 L12 22" stroke="#ff6f91"/><path d="M30 46 L44 32 L47 16" stroke="#ffb3c6"/><path d="M30 38 L28 20 L34 6" stroke="#ff6f91"/><circle cx="12" cy="20" r="3" fill="#ffb3c6" stroke="none"/><circle cx="47" cy="14" r="3" fill="#ffb3c6" stroke="none"/><circle cx="34" cy="5" r="3" fill="#ffb3c6" stroke="none"/></g></svg><svg class="reef r-brain sm-hide" viewBox="0 0 60 42" style="left:20%;height:26px" aria-hidden="true"><path d="M4 40 A26 26 0 0 1 56 40Z" fill="#ffb86b"/><path d="M12 38 Q18 28 24 36 Q30 24 36 35 Q42 26 48 37 M16 30 Q22 22 28 28 Q34 20 40 27" fill="none" stroke="#c9742c" stroke-width="2.4" stroke-linecap="round"/></svg><svg class="reef r-fan sm-hide" viewBox="0 0 60 70" style="left:29%;height:52px" aria-hidden="true"><g class="sway"><path d="M30 70 V54" stroke="#9b59d0" stroke-width="5" stroke-linecap="round"/><path d="M30 54 C2 50 4 14 30 6 C56 14 58 50 30 54Z" fill="#c77dff" fill-opacity=".85"/><path d="M30 54 V10 M30 52 L12 24 M30 52 L48 24 M30 52 L7 36 M30 52 L53 36" stroke="#8e44ad" stroke-width="1.8" fill="none" stroke-linecap="round"/></g></svg><svg class="reef r-tube" viewBox="0 0 60 70" style="left:43%;height:40px" aria-hidden="true"><g class="sway"><rect x="8" y="28" width="12" height="42" rx="6" fill="#ffd166"/><rect x="24" y="12" width="12" height="58" rx="6" fill="#ffc23a"/><rect x="40" y="34" width="12" height="36" rx="6" fill="#ffd166"/><ellipse cx="14" cy="28" rx="5" ry="2.2" fill="#b3721a"/><ellipse cx="30" cy="12" rx="5" ry="2.2" fill="#b3721a"/><ellipse cx="46" cy="34" rx="5" ry="2.2" fill="#b3721a"/></g></svg><svg class="reef r-star" viewBox="0 0 60 56" style="left:51%;height:20px" aria-hidden="true"><path d="M30 3 L37 22 L57 22 L41 34 L47 54 L30 42 L13 54 L19 34 L3 22 L23 22Z" fill="#ff8a5c" stroke="#d9552a" stroke-width="2" stroke-linejoin="round"/><circle cx="30" cy="27" r="2.5" fill="#ffd0b8"/></svg><svg class="reef r-branch sm-hide" viewBox="0 0 60 70" style="left:57%;height:54px" aria-hidden="true"><g fill="none" stroke-linecap="round" stroke-width="6" class="sway"><path d="M30 70 V38" stroke="#ff9d4d"/><path d="M30 52 L16 38 L12 22" stroke="#ff9d4d"/><path d="M30 46 L44 32 L47 16" stroke="#ffd0a1"/><path d="M30 38 L28 20 L34 6" stroke="#ff9d4d"/><circle cx="12" cy="20" r="3" fill="#ffd0a1" stroke="none"/><circle cx="47" cy="14" r="3" fill="#ffd0a1" stroke="none"/><circle cx="34" cy="5" r="3" fill="#ffd0a1" stroke="none"/></g></svg><svg class="reef r-scallop" viewBox="0 0 60 48" style="left:65%;height:22px" aria-hidden="true"><path d="M30 6 C10 6 2 22 4 38 L56 38 C58 22 50 6 30 6Z" fill="#ffd9c7"/><path d="M30 38 V8 M30 38 L14 11 M30 38 L46 11 M30 38 L7 20 M30 38 L53 20" stroke="#e59c8a" stroke-width="2.2" fill="none"/><rect x="22" y="38" width="16" height="8" rx="2" fill="#e59c8a"/></svg><svg class="reef r-fan sm-hide" viewBox="0 0 60 70" style="left:72%;height:48px" aria-hidden="true"><g class="sway"><path d="M30 70 V54" stroke="#9b59d0" stroke-width="5" stroke-linecap="round"/><path d="M30 54 C2 50 4 14 30 6 C56 14 58 50 30 54Z" fill="#c77dff" fill-opacity=".85"/><path d="M30 54 V10 M30 52 L12 24 M30 52 L48 24 M30 52 L7 36 M30 52 L53 36" stroke="#8e44ad" stroke-width="1.8" fill="none" stroke-linecap="round"/></g></svg><svg class="reef r-spiral" viewBox="0 0 60 56" style="left:82%;height:22px" aria-hidden="true"><path d="M6 40 C6 14 40 6 52 24 C60 38 44 52 32 46 C22 42 24 28 34 28 C40 28 40 36 36 36" fill="#ffe3b3" stroke="#d99a4a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 40 C10 50 22 52 32 46" fill="none" stroke="#d99a4a" stroke-width="3" stroke-linecap="round"/></svg><svg class="reef r-brain sm-hide" viewBox="0 0 60 42" style="left:88%;height:28px" aria-hidden="true"><path d="M4 40 A26 26 0 0 1 56 40Z" fill="#ffb86b"/><path d="M12 38 Q18 28 24 36 Q30 24 36 35 Q42 26 48 37 M16 30 Q22 22 28 28 Q34 20 40 27" fill="none" stroke="#c9742c" stroke-width="2.4" stroke-linecap="round"/></svg><svg class="reef r-grass" viewBox="0 0 40 70" style="left:5%;height:40px" aria-hidden="true"><g fill="none" stroke="#2fb083" stroke-width="4" stroke-linecap="round" class="sway"><path d="M10 70 C6 52 14 40 8 22"/><path d="M20 70 C22 50 14 36 22 14"/><path d="M30 70 C34 54 26 44 32 28"/></g></svg><svg class="reef r-grass" viewBox="0 0 40 70" style="left:36%;height:34px" aria-hidden="true"><g fill="none" stroke="#1f8f6b" stroke-width="4" stroke-linecap="round" class="sway"><path d="M10 70 C6 52 14 40 8 22"/><path d="M20 70 C22 50 14 36 22 14"/><path d="M30 70 C34 54 26 44 32 28"/></g></svg><svg class="reef r-grass" viewBox="0 0 40 70" style="left:48%;height:44px" aria-hidden="true"><g fill="none" stroke="#35c28f" stroke-width="4" stroke-linecap="round" class="sway"><path d="M10 70 C6 52 14 40 8 22"/><path d="M20 70 C22 50 14 36 22 14"/><path d="M30 70 C34 54 26 44 32 28"/></g></svg><svg class="reef r-grass" viewBox="0 0 40 70" style="left:78%;height:38px" aria-hidden="true"><g fill="none" stroke="#1f8f6b" stroke-width="4" stroke-linecap="round" class="sway"><path d="M10 70 C6 52 14 40 8 22"/><path d="M20 70 C22 50 14 36 22 14"/><path d="M30 70 C34 54 26 44 32 28"/></g></svg><svg class="reef r-grass" viewBox="0 0 40 70" style="left:93%;height:46px" aria-hidden="true"><g fill="none" stroke="#2fb083" stroke-width="4" stroke-linecap="round" class="sway"><path d="M10 70 C6 52 14 40 8 22"/><path d="M20 70 C22 50 14 36 22 14"/><path d="M30 70 C34 54 26 44 32 28"/></g></svg></div>
+          <svg class="aqua-kelp aqua-kelp-l" viewBox="0 0 70 90" preserveAspectRatio="xMidYMax meet"><g fill="none" stroke-linecap="round" stroke-width="5">
+            <path class="k1" d="M18 90 C8 70 28 55 16 36 C10 24 20 14 16 4" stroke="#1f8f6b"/>
+            <path class="k2" d="M34 90 C26 74 44 60 34 44 C28 32 38 22 34 10" stroke="#2fb083"/>
+            <path class="k3" d="M52 90 C44 76 60 64 50 50 C45 40 54 32 50 22" stroke="#1f8f6b"/></g></svg>
+          <svg class="aqua-kelp aqua-kelp-r" viewBox="0 0 70 90" preserveAspectRatio="xMidYMax meet"><g fill="none" stroke-linecap="round" stroke-width="5">
+            <path class="k1" d="M18 90 C8 70 28 55 16 36 C10 24 20 14 16 4" stroke="#1f8f6b"/>
+            <path class="k2" d="M34 90 C26 74 44 60 34 44 C28 32 38 22 34 10" stroke="#2fb083"/>
+            <path class="k3" d="M52 90 C44 76 60 64 50 50 C45 40 54 32 50 22" stroke="#1f8f6b"/></g></svg>
+          <div class="fish" style="--y:8px;--s:48px;--dur:40s;--delay:-4s;--c:#ff7a59"><svg viewBox="0 0 60 36"><use href="#aq-fish"/></svg></div>
+          <div class="fish rtl" style="--y:30px;--s:32px;--dur:29s;--delay:-11s;--c:#ffd166"><svg viewBox="0 0 60 36"><use href="#aq-fish"/></svg></div>
+          <div class="fish" style="--y:4px;--s:28px;--dur:22s;--delay:-2s;--c:#7bd3ff"><svg viewBox="0 0 60 36"><use href="#aq-fish"/></svg></div>
+          <div class="fish rtl" style="--y:22px;--s:40px;--dur:48s;--delay:-30s;--c:#b79cff"><svg viewBox="0 0 60 36"><use href="#aq-fish"/></svg></div>
+          <div class="fish" style="--y:12px;--s:24px;--dur:33s;--delay:-17s;--c:#63e6be"><svg viewBox="0 0 60 36"><use href="#aq-fish"/></svg></div>
+          <div class="fish rtl" style="--y:36px;--s:16px;--dur:25s;--delay:-8s;--c:#ff9d7f"><svg viewBox="0 0 60 36"><use href="#aq-fish"/></svg></div>
+          <div class="fish rtl" style="--y:35px;--s:14px;--dur:25s;--delay:-9.5s;--c:#ff9d7f"><svg viewBox="0 0 60 36"><use href="#aq-fish"/></svg></div>
+          <div class="fish rtl" style="--y:38px;--s:13px;--dur:25s;--delay:-10.8s;--c:#ff9d7f"><svg viewBox="0 0 60 36"><use href="#aq-fish"/></svg></div>
+          <i class="amb" style="--x:6%;--d:7s;--delay:-1s;--s:5px"></i><i class="amb" style="--x:13%;--d:9s;--delay:-5s;--s:4px"></i><i class="amb" style="--x:21%;--d:6.5s;--delay:-3s;--s:6px"></i><i class="amb" style="--x:29%;--d:8.5s;--delay:-7s;--s:4px"></i><i class="amb" style="--x:37%;--d:10s;--delay:-2s;--s:5px"></i><i class="amb" style="--x:46%;--d:7.5s;--delay:-6s;--s:7px"></i><i class="amb" style="--x:54%;--d:9.5s;--delay:-4s;--s:4px"></i><i class="amb" style="--x:62%;--d:6.8s;--delay:-8s;--s:5px"></i><i class="amb" style="--x:70%;--d:8.8s;--delay:-1.5s;--s:6px"></i><i class="amb" style="--x:78%;--d:7.2s;--delay:-5.5s;--s:4px"></i><i class="amb" style="--x:86%;--d:9.2s;--delay:-3.2s;--s:5px"></i><i class="amb" style="--x:93%;--d:6.6s;--delay:-6.4s;--s:4px"></i>
+          <div class="jelly" style="--jx:41%"><svg viewBox="0 0 40 56"><g class="jelly-bell"><path d="M4 22 C4 4 36 4 36 22 Q20 28 4 22Z" fill="#d9b8ff" fill-opacity=".7"/><path d="M10 14 Q20 6 30 14" stroke="#fff" stroke-opacity=".5" stroke-width="2" fill="none"/></g><g stroke="#d9b8ff" stroke-opacity=".75" stroke-width="2" fill="none" stroke-linecap="round"><path class="t1" d="M10 24 Q6 34 10 44 Q13 50 9 55"/><path class="t2" d="M20 25 Q24 36 19 46 Q16 52 20 56"/><path class="t3" d="M30 24 Q34 34 30 44 Q27 50 31 55"/></g></svg></div>
+          <div class="fish" style="--y:10px;--s:34px;--dur:52s;--delay:-20s;--c:#ff7aa8"><svg viewBox="0 0 60 44"><use href="#aq-fish2"/></svg></div>
+          <div class="fish rtl" style="--y:28px;--s:26px;--dur:36s;--delay:-9s;--c:#ffe45e"><svg viewBox="0 0 60 44"><use href="#aq-fish2"/></svg></div>
+          <div class="fish" style="--y:6px;--s:22px;--dur:27s;--delay:-14s;--c:#5ee0ff"><svg viewBox="0 0 60 44"><use href="#aq-fish2"/></svg></div>
+          <div class="fish rtl" style="--y:32px;--s:30px;--dur:58s;--delay:-41s;--c:#c4f06b"><svg viewBox="0 0 60 44"><use href="#aq-fish2"/></svg></div>
+          <div class="fish" style="--y:20px;--s:18px;--dur:31s;--delay:-5s;--c:#ff9d4d"><svg viewBox="0 0 60 44"><use href="#aq-fish2"/></svg></div>
+        </div>
+        <svg class="aqua-wave" viewBox="0 0 1200 24" preserveAspectRatio="none" aria-hidden="true"><path d="M0 12 q25 -10 50 0 t50 0 t50 0 t50 0 t50 0 t50 0 t50 0 t50 0 t50 0 t50 0 t50 0 t50 0 t50 0 t50 0 t50 0 t50 0 t50 0 t50 0 t50 0 t50 0 t50 0 t50 0 t50 0 t50 0 L1200 24 L0 24 Z"/></svg>
+        <div class="jumper" style="--x:16%;--dur:17s;--delay:-9s;--dir:1" aria-hidden="true"><i class="splash s1"></i><i class="splash s2"></i><div class="jfish"><svg viewBox="0 0 60 36" style="color:#ff9d4d"><use href="#aq-fish"/></svg></div></div>
+        <div class="jumper rtl" style="--x:74%;--dur:25s;--delay:-15s;--dir:-1" aria-hidden="true"><i class="splash s1"></i><i class="splash s2"></i><div class="jfish"><svg viewBox="0 0 60 36" style="color:#7bd3ff"><use href="#aq-fish"/></svg></div></div>
+        <div class="aqua-band" aria-hidden="true"></div>
+        <media-time-slider class="slate-seek" thumb-alignment="center">
+                <media-slider-track class="slate-track">
+                  <media-slider-buffer class="slate-buffer"></media-slider-buffer>
+                  <media-slider-fill class="slate-fill"></media-slider-fill>
+                </media-slider-track>
+                <media-slider-thumb class="slate-playhead"></media-slider-thumb>
+                <media-slider-preview class="slate-flag" overflow="clamp">
+                  <media-slider-value class="slate-flag-value" type="pointer"></media-slider-value>
+                </media-slider-preview>
+              </media-time-slider>
+
+              <media-controls-group class="slate-row">
+                <media-controls-group class="slate-group">
+                  <media-play-button class="slate-btn slate-play">
+                    <svg class="i i-play" aria-hidden="true"><use href="#i-play"/></svg>
+                    <svg class="i i-pause" aria-hidden="true"><use href="#i-pause"/></svg>
+                    <svg class="i i-replay" aria-hidden="true"><use href="#i-replay"/></svg>
+                  </media-play-button>
+
+                  <button type="button" class="slate-btn aqua-stop" data-stop aria-label="Stop">
+                    <svg class="i" aria-hidden="true"><use href="#i-stop"/></svg>
+                  </button>
+
+                  <media-seek-button class="slate-btn slate-seek-btn" seconds="-10">
+                    <span class="num" aria-hidden="true">&minus;10</span>
+                  </media-seek-button>
+                  <media-seek-button class="slate-btn slate-seek-btn" seconds="10">
+                    <span class="num" aria-hidden="true">+10</span>
+                  </media-seek-button>
+
+                  <media-mute-button class="slate-btn slate-mute">
+                    <svg class="i i-vol" aria-hidden="true"><use href="#i-vol"/></svg>
+                    <svg class="i i-muted" aria-hidden="true"><use href="#i-mute"/></svg>
+                  <span class="bubbles" aria-hidden="true"><i class="bubble"></i><i class="bubble"></i><i class="bubble"></i><i class="bubble"></i><i class="bubble"></i></span>
+                  </media-mute-button>
+                  <media-volume-slider class="slate-volume" thumb-alignment="edge">
+                    <media-slider-track class="slate-vtrack">
+                      <media-slider-fill class="slate-vfill"></media-slider-fill>
+                    </media-slider-track>
+                    <media-slider-thumb class="slate-vthumb"></media-slider-thumb>
+                  </media-volume-slider>
+                </media-controls-group>
+                <media-captions-button class="aqua-cc-hidden" aria-hidden="true" tabindex="-1"></media-captions-button>
+                <div class="aqua-mid">
+
+                  <media-time-group class="slate-time">
+                    <media-time class="slate-time-now" type="current"></media-time>
+                    <media-time-separator class="slate-time-sep"></media-time-separator>
+                    <media-time class="slate-time-total" type="duration"></media-time>
+                  </media-time-group>
+</div>
+
+
+                <media-controls-group class="slate-group">
+
+                  <button type="button" class="slate-btn aqua-tog" data-proxy="cc" aria-pressed="false" aria-label="Captions" title="Captions">
+                    <svg class="i" aria-hidden="true"><use href="#i-cc"/></svg>
+                  </button>
+                  <button type="button" class="slate-btn aqua-tog" data-proxy="clock" aria-pressed="false" aria-label="Clock" title="Clock">
+                    <svg class="i" aria-hidden="true"><use href="#i-clock"/></svg>
+                  </button>
+                  <button type="button" class="slate-btn aqua-tog" data-proxy="logo" aria-pressed="false" aria-label="Logo" title="Logo">
+                    <svg class="i" aria-hidden="true"><use href="#i-logo"/></svg>
+                  </button>
+                  <button type="button" class="slate-btn aqua-tog" data-proxy="loop" aria-pressed="false" aria-label="Loop" title="Loop">
+                    <svg class="i" aria-hidden="true"><use href="#i-loop"/></svg>
+                  </button>
+                  <div class="slate-meter" data-state="off" role="img" aria-label="Audio meter">
+                    <span class="slate-meter-label"></span>
+                    <span class="slate-meter-bars" aria-hidden="true"></span>
+                  </div>
+                
+                  <button type="button" class="slate-btn slate-settings" commandfor="slate-menu" aria-label="Settings">
+                    <svg class="i" aria-hidden="true"><use href="#i-gear"/></svg>
+                    
+                  </button>
+
+                  <media-fullscreen-button class="slate-btn slate-fs">
+                    <svg class="i i-fs-in" aria-hidden="true"><use href="#i-fs"/></svg>
+                    <svg class="i i-fs-out" aria-hidden="true"><use href="#i-fs-exit"/></svg>
+                  </media-fullscreen-button>
+                </media-controls-group>
+              </media-controls-group>
+            </div>
+
+            <media-menu id="slate-menu" class="slate-menu" side="top" align="end">
+              <media-menu-content class="slate-menu-content">
+                <media-menu-item class="slate-menu-item" commandfor="slate-menu-speed">
+                  <span>Speed</span>
+                  <span class="slate-menu-hint"><span data-part="value"></span>
+                    <svg class="i chev" aria-hidden="true"><use href="#i-chev"/></svg></span>
+                </media-menu-item>
+                <media-menu-item class="slate-menu-item" commandfor="slate-menu-quality" data-row="quality">
+                  <span>Quality</span>
+                  <span class="slate-menu-hint"><span data-part="value"></span>
+                    <svg class="i chev" aria-hidden="true"><use href="#i-chev"/></svg></span>
+                </media-menu-item>
+                <media-menu-item class="slate-menu-item" commandfor="slate-menu-audio" data-row="audio">
+                  <span>Audio track</span>
+                  <span class="slate-menu-hint"><span data-part="value"></span>
+                    <svg class="i chev" aria-hidden="true"><use href="#i-chev"/></svg></span>
+                </media-menu-item>
+                <media-menu-item class="slate-menu-item" commandfor="slate-menu-captions">
+                  <span>Captions</span>
+                  <span class="slate-menu-hint"><span data-part="value"></span>
+                    <svg class="i chev" aria-hidden="true"><use href="#i-chev"/></svg></span>
+                </media-menu-item>
+                <media-menu-item class="slate-menu-item" commandfor="slate-menu-keys">
+                  <span>Shortcuts</span>
+                  <span class="slate-menu-hint"><span>Keys</span>
+                    <svg class="i chev" aria-hidden="true"><use href="#i-chev"/></svg></span>
+                </media-menu-item>
+                <button type="button" class="slate-menu-item aqua-loop aqua-logo-row aqua-narrow-only" data-logo-btn role="menuitemcheckbox" aria-checked="true">
+                  <span>Logo</span><span class="slate-menu-hint"><span data-logo-val>On</span></span>
+                </button>
+                <media-menu-item class="slate-menu-item" commandfor="slate-menu-logotext">
+                  <span>Logo text</span>
+                  <span class="slate-menu-hint"><span data-logo-hint>AQUA TV</span>
+                    <svg class="i chev" aria-hidden="true"><use href="#i-chev"/></svg></span>
+                </media-menu-item>
+                <button type="button" class="slate-menu-item aqua-loop aqua-cc-row aqua-narrow-only" data-cc-row aria-checked="false" role="menuitemcheckbox">
+                  <span>CC</span><span class="slate-menu-hint"><span data-cc-val>Off</span></span>
+                </button>
+                <button type="button" class="slate-menu-item aqua-loop aqua-clock-row aqua-narrow-only" data-clock-btn aria-pressed="false" aria-label="Show clock">
+                  <span>Clock</span><span class="slate-menu-hint"><span data-clock-val>Off</span></span>
+                </button>
+                <button type="button" class="slate-menu-item aqua-loop aqua-narrow-only" data-loop role="menuitemcheckbox" aria-checked="false">
+                  <span>Loop</span><span class="slate-menu-hint"><span data-loop-val>Off</span></span>
+                </button>
+              </media-menu-content>
+
+              <media-menu-content class="slate-menu-content" id="slate-menu-speed">
+                <media-menu-item class="slate-menu-item slate-menu-back">
+                  <svg class="i chev back" aria-hidden="true"><use href="#i-chev"/></svg><span>Speed</span>
+                </media-menu-item>
+                <media-menu-separator class="slate-menu-sep"></media-menu-separator>
+                <media-playback-rate-radio-group class="slate-menu-group">
+                  <template>
+                    <media-menu-radio-item class="slate-menu-item">
+                      <span data-part="label"></span>
+                      <media-menu-item-indicator force-mount class="slate-menu-check">
+                        <svg class="i" aria-hidden="true"><use href="#i-check"/></svg>
+                      </media-menu-item-indicator>
+                    </media-menu-radio-item>
+                  </template>
+                </media-playback-rate-radio-group>
+              </media-menu-content>
+
+
+              <media-menu-content class="slate-menu-content" id="slate-menu-quality">
+                <media-menu-item class="slate-menu-item slate-menu-back">
+                  <svg class="i chev back" aria-hidden="true"><use href="#i-chev"/></svg><span>Quality</span>
+                </media-menu-item>
+                <media-menu-separator class="slate-menu-sep"></media-menu-separator>
+                <media-quality-radio-group class="slate-menu-group">
+                  <template>
+                    <media-menu-radio-item class="slate-menu-item">
+                      <span data-part="label"></span>
+                      <media-menu-item-indicator force-mount class="slate-menu-check">
+                        <svg class="i" aria-hidden="true"><use href="#i-check"/></svg>
+                      </media-menu-item-indicator>
+                    </media-menu-radio-item>
+                  </template>
+                </media-quality-radio-group>
+                              <p class="slate-menu-empty" data-empty>Auto only. This video has a single quality.</p>
+              </media-menu-content>
+
+              <media-menu-content class="slate-menu-content" id="slate-menu-audio">
+                <media-menu-item class="slate-menu-item slate-menu-back">
+                  <svg class="i chev back" aria-hidden="true"><use href="#i-chev"/></svg><span>Audio track</span>
+                </media-menu-item>
+                <media-menu-separator class="slate-menu-sep"></media-menu-separator>
+                <media-audio-track-radio-group class="slate-menu-group">
+                  <template>
+                    <media-menu-radio-item class="slate-menu-item">
+                      <span data-part="label"></span>
+                      <media-menu-item-indicator force-mount class="slate-menu-check">
+                        <svg class="i" aria-hidden="true"><use href="#i-check"/></svg>
+                      </media-menu-item-indicator>
+                    </media-menu-radio-item>
+                  </template>
+                </media-audio-track-radio-group>
+                              <p class="slate-menu-empty" data-empty>Default only. This video has a single audio track.</p>
+              </media-menu-content>
+
+              <media-menu-content class="slate-menu-content" id="slate-menu-logotext">
+                <media-menu-item class="slate-menu-item slate-menu-back">
+                  <svg class="i chev back" aria-hidden="true"><use href="#i-chev"/></svg><span>Logo text</span>
+                </media-menu-item>
+                <media-menu-separator class="slate-menu-sep"></media-menu-separator>
+                <label class="aqua-field"><span class="aqua-field-lbl">Channel name</span>
+                  <input type="text" class="aqua-input" data-logo-input maxlength="16" value="AQUA TV" autocomplete="off" spellcheck="false" placeholder="AQUA TV">
+                </label>
+              </media-menu-content>
+
+              <media-menu-content class="slate-menu-content" id="slate-menu-keys">
+                <media-menu-item class="slate-menu-item slate-menu-back">
+                  <svg class="i chev back" aria-hidden="true"><use href="#i-chev"/></svg><span>Keyboard shortcuts</span>
+                </media-menu-item>
+                <media-menu-separator class="slate-menu-sep"></media-menu-separator>
+                <dl class="aqua-keys" tabindex="0" aria-label="Keyboard shortcuts"><dt><kbd>Space / K</kbd></dt><dd>Play / pause</dd><dt><kbd>S</kbd></dt><dd>Stop</dd><dt><kbd>← →</kbd></dt><dd>±5 s</dd><dt><kbd>J L</kbd></dt><dd>±10 s</dd><dt><kbd>↑ ↓</kbd></dt><dd>Volume</dd><dt><kbd>M</kbd></dt><dd>Mute</dd><dt><kbd>0–9</kbd></dt><dd>Jump %</dd><dt><kbd>Home End</kbd></dt><dd>Start / end</dd><dt><kbd>&lt; &gt;</kbd></dt><dd>Speed</dd><dt><kbd>F</kbd></dt><dd>Fullscreen</dd><dt><kbd>C</kbd></dt><dd>Captions</dd><dt><kbd>T</kbd></dt><dd>Clock</dd><dt><kbd>B</kbd></dt><dd>Logo</dd><dt><kbd>R</kbd></dt><dd>Loop</dd><dt><kbd>Esc</kbd></dt><dd>Close menu</dd></dl>
+              </media-menu-content>
+
+              <media-menu-content class="slate-menu-content" id="slate-menu-captions">
+                <media-menu-item class="slate-menu-item slate-menu-back">
+                  <svg class="i chev back" aria-hidden="true"><use href="#i-chev"/></svg><span>Captions</span>
+                </media-menu-item>
+                <media-menu-separator class="slate-menu-sep"></media-menu-separator>
+                <media-captions-radio-group class="slate-menu-group">
+                  <template>
+                    <media-menu-radio-item class="slate-menu-item">
+                      <span data-part="label"></span>
+                      <media-menu-item-indicator force-mount class="slate-menu-check">
+                        <svg class="i" aria-hidden="true"><use href="#i-check"/></svg>
+                      </media-menu-item-indicator>
+                    </media-menu-radio-item>
+                  </template>
+                </media-captions-radio-group>
+              </media-menu-content>
+            </media-menu>
+          </media-controls-content>
+        </media-controls>
+
+        <media-hotkey keys="Space" action="togglePaused"></media-hotkey>
+        <media-hotkey keys="k" action="togglePaused"></media-hotkey>
+        <media-hotkey keys="m" action="toggleMuted"></media-hotkey>
+        <media-hotkey keys="ArrowRight" action="seekStep" value="5"></media-hotkey>
+        <media-hotkey keys="ArrowLeft" action="seekStep" value="-5"></media-hotkey>
+        <media-hotkey keys="l" action="seekStep" value="10"></media-hotkey>
+        <media-hotkey keys="j" action="seekStep" value="-10"></media-hotkey>
+        <media-hotkey keys="ArrowUp" action="volumeStep"></media-hotkey>
+        <media-hotkey keys="ArrowDown" action="volumeStep"></media-hotkey>
+        <media-hotkey keys="0-9" action="seekToPercent"></media-hotkey>
+        <media-hotkey keys="Home" action="seekToPercent" value="0"></media-hotkey>
+        <media-hotkey keys="End" action="seekToPercent" value="100"></media-hotkey>
+        <media-hotkey keys="&gt;" action="speedUp"></media-hotkey>
+        <media-hotkey keys="&lt;" action="speedDown"></media-hotkey>
+        <media-hotkey keys="f" action="toggleFullscreen"></media-hotkey>
+        <media-hotkey keys="c" action="toggleSubtitles"></media-hotkey>
+
+        <media-gesture type="tap" action="togglePaused" pointer="mouse" region="center"></media-gesture>
+        <media-gesture type="tap" action="toggleControls" pointer="touch"></media-gesture>
+        <media-gesture type="doubletap" action="seekStep" region="left"></media-gesture>
+        <media-gesture type="doubletap" action="toggleFullscreen" region="center"></media-gesture>
+        <media-gesture type="doubletap" action="seekStep" region="right"></media-gesture>
+
+        <media-status-announcer class="sr-only"></media-status-announcer>
+      </media-container>
+    </video-player>
+          </div>
+          <div class="sk sk-line sk-short" aria-hidden="true"></div>
+          <div class="sk sk-line" aria-hidden="true"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="loader" aria-labelledby="loader-h" hidden data-tools>
+      <h2 id="loader-h">Try your own video</h2>
+      <p class="hint">Paste a YouTube link or a direct video link (.mp4, .webm, .m3u8), or open a file from your computer.</p>
+      <form id="loader-form" class="loader-row" novalidate>
+        <label class="visually-hidden" for="loader-url">YouTube or video link</label>
+        <input id="loader-url" class="loader-input" type="text" inputmode="url" autocomplete="off" spellcheck="false" placeholder="https://www.youtube.com/watch?v=…" />
+        <button type="submit" class="slate-btn slate-btn-accent">Load</button>
+        <button type="button" id="loader-file-btn" class="slate-btn">Choose file</button>
+        <button type="button" id="loader-reset" class="slate-btn">Demo</button>
+        <input id="loader-file" class="visually-hidden" type="file" accept="video/*,audio/*" tabindex="-1" aria-hidden="true" />
+      </form>
+      <p id="loader-status" class="loader-status" role="status" aria-live="polite"></p>
+    </section>
+
+    <section class="notes" id="notes" aria-labelledby="notes-h">
+      <h2 id="notes-h">Design thinking</h2>
+      <p>Video controls usually disappear into the picture. AQUA gives them a place to live: the strip is the front glass of a small tank, and the playhead is a fish that swims along the timeline.</p>
+      <p>Motion carries the meaning. Fish, bubbles, kelp and the water surface only move while the video plays, and they freeze in place on pause, so the screen is calm exactly when you reach for a control. The controls themselves sit on frosted-glass pills with dark tint and bright text, so they stay readable over any footage.</p>
+      <p>AQUA is deliberately distinctive, made for sites where the video is the fun part: aquariums, kids&rsquo; content, wellness and travel. It is not a neutral skin. Three water themes (Reef, Lagoon, Deep) recolour the whole scene, and a few CSS variables set the rest.</p>
+      <p>Everything is built from Video.js v10 components (<code>@videojs/html</code>) with plain CSS. Speed, quality, audio track and caption language sit in Settings; captions, clock, channel logo and loop have their own buttons in the bar.</p>
+      <ul class="facts">
+        <li><b>Keyboard</b> Tab through every control, arrows seek, Esc closes menus.</li>
+        <li><b>Touch</b> 44px targets and double-tap to skip.</li>
+        <li><b>Motion</b> With reduced motion on, nothing animates at all.</li>
+      </ul>
+    </section>
+
+    <section class="notes doc" id="controls" aria-labelledby="controls-h">
+      <h2 id="controls-h">Controls</h2>
+      <p>In the bar: play and pause, stop, back and forward 10 seconds, mute and volume, the seek bar with the fish playhead, the time, then captions, clock, channel logo and loop toggles, a stereo meter, Settings and fullscreen. On narrow players the four toggles move into Settings.</p>
+      <p>In Settings: speed, quality, audio track, caption language, logo text and this list of shortcuts.</p>
+      <dl class="keys-table" aria-label="Keyboard shortcuts"><dt><kbd>Space / K</kbd></dt><dd>Play / pause</dd><dt><kbd>S</kbd></dt><dd>Stop</dd><dt><kbd>← →</kbd></dt><dd>±5 s</dd><dt><kbd>J L</kbd></dt><dd>±10 s</dd><dt><kbd>↑ ↓</kbd></dt><dd>Volume</dd><dt><kbd>M</kbd></dt><dd>Mute</dd><dt><kbd>0–9</kbd></dt><dd>Jump %</dd><dt><kbd>Home End</kbd></dt><dd>Start / end</dd><dt><kbd>&lt; &gt;</kbd></dt><dd>Speed</dd><dt><kbd>F</kbd></dt><dd>Fullscreen</dd><dt><kbd>C</kbd></dt><dd>Captions</dd><dt><kbd>T</kbd></dt><dd>Clock</dd><dt><kbd>B</kbd></dt><dd>Logo</dd><dt><kbd>R</kbd></dt><dd>Loop</dd><dt><kbd>Esc</kbd></dt><dd>Close menu</dd></dl>
+    </section>
+
+    <section class="notes doc" id="a11y" aria-labelledby="a11y-h">
+      <h2 id="a11y-h">Accessibility</h2>
+      <ul class="facts">
+        <li><b>Readable</b> Frosted glass with a dark tint and bright text keeps icons and times legible over bright or dark footage.</li>
+        <li><b>Tappable</b> Every control is at least 44 by 44 px.</li>
+        <li><b>Focus</b> A solid 3 px white ring with a dark halo on every control.</li>
+        <li><b>Keyboard</b> Everything is reachable by Tab, menus close with Esc and focus returns to the Settings button.</li>
+        <li><b>Calm</b> With reduced motion on, nothing animates. The fish and bubbles are decorative and hidden from screen readers.</li>
+        <li><b>Checked</b> An automated axe scan of this page found no violations at desktop and phone sizes.</li>
+      </ul>
+    </section>
+
+    <section class="notes doc" id="install" aria-labelledby="install-h">
+      <h2 id="install-h">Use it on your site</h2>
+      <p>Deploy this page, then drop it into any site with one iframe. <code>embed=1</code> hides everything except the player, and <code>src</code> sets the video (a Mux stream, an .mp4 or a YouTube link).</p>
+      <div class="code">
+        <pre><code id="embed-code">&lt;iframe src="https://YOUR-SITE/?embed=1&amp;src=https%3A%2F%2Fstream.mux.com%2FPLAYBACK_ID.m3u8"
+  title="AQUA video player" allow="autoplay; fullscreen" allowfullscreen
+  style="width:100%;aspect-ratio:16/9;border:0"&gt;&lt;/iframe&gt;</code></pre>
+        <button type="button" class="slate-btn pv-btn" id="copy-embed">Copy</button>
+      </div>
+      <p>From source: <code>npm install</code>, <code>npm run dev</code>, then <code>npm run build</code> for a static site.</p>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <p>AQUA is open source under the Apache License 2.0. Built on <a href="https://videojs.org">Video.js v10</a>. Demo video by B-Art.Studio, hosted on <a href="https://www.mux.com">Mux</a>. Type: Space Mono (SIL Open Font License).</p>
+    <p><a id="repo-link" href="https://github.com/" hidden>Source on GitHub</a></p>
+  </footer>
+</body>
+</html>
