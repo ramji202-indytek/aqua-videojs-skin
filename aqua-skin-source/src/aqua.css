@@ -192,9 +192,11 @@ body.aqua-page {
 
 /* Small players */
 @container slate (max-width: 519px) {
-  .aqua-band { height: 34px; }
-  .aqua { --aq-peek: 44px; }
-  .aqua .slate-center { bottom: 126px; }
+  .aqua-band { height: 16px; }
+  .aqua { --aq-peek: 36px; }
+  .aqua .slate-seek { height: 34px; margin-top: 0; }
+  .aqua .slate-row { padding: 0 8px 6px; }
+  .aqua .slate-center { bottom: 104px; }
   .aqua-clock-btn { display: none; }
   .aqua .slate-big-play { width: 54px; border-width: 3px; box-shadow: 0 8px 20px rgb(2 26 40 / 0.5); }
   .aqua .slate-playhead { width: 56px; height: 34px; }
